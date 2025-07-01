@@ -18,6 +18,12 @@ const Dashboard: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
     const totalPages = Math.ceil(OrderData.length / itemsPerPage);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    const togglesDropdown = (index: number) => {
+        setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    };
+
 
     const toggleDropdowns = () => setIsOpen1(!isOpen1);
     const selectOptions = (option: string) => {
@@ -94,6 +100,17 @@ const Dashboard: React.FC = () => {
 
         return pages
     }
+
+    const timezones = [
+        "UTC",
+        "GMT",
+        "Asia/Karachi",
+        "America/New_York",
+        "Europe/London",
+        "Asia/Dubai",
+        "Australia/Sydney"
+    ]
+
 
     return (
         <div className="bg-[#26262B] px-[32px] py-4">
@@ -203,11 +220,28 @@ const Dashboard: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <div className="leading-[0px] text-[0.875rem] text-[#FFFFFF] font-exo1 font-medium ">
-                                    {order.coachName}
+                            <div className="relative">
+                                <div className="flex items-center gap-2" onClick={() => togglesDropdown(index)}>
+                                    <div className="leading-[0px] text-[0.875rem] text-[#FFFFFF] font-exo1 font-medium ">
+                                        {order.coachName}
+                                    </div>
+                                    <div className="cursor-pointer"><MdOutlineArrowRight /></div>
                                 </div>
-                                <div className="cursor-pointer"><MdOutlineArrowRight /></div>
+                                {openIndex === index && (
+                                    <ul className="absolute right-0 mt-2 w-48 bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
+                                        {timezones.map((tz, index) => (
+                                            <li
+                                                key={index}
+                                                className="px-4 py-2 hover:bg-[#444] cursor-pointer"
+                                                onClick={() => {
+                                                    setOpenIndex(null);
+                                                }}
+                                            >
+                                                {tz}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
                         </div>
                     ))}

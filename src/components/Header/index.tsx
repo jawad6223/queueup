@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { IoReorderThree } from "react-icons/io5";
 import { LuBell } from "react-icons/lu";
+import { PiExportBold } from "react-icons/pi";
 // import Drawer from "../Drawer";
 // import { AdminMenus } from "@/data/Sidebar";
 
@@ -46,6 +47,9 @@ const Header: React.FC = () => {
                     </div>
                 </div>
                 <div className="hidden sm:flex items-center gap-4">
+                    <button className="flex items-center gap-2 bg-[#EF4444] text-white px-4 py-2 rounded-md cursor-pointer">
+                        Export to CSV <PiExportBold />
+                    </button>
                     <LuBell className="text-white cursor-pointer text-[20px]" />
                         <div className="flex items-center gap-2 cursor-pointer">
                             <Image src="/images/avatar.jpg" alt="bell" width={43} height={43} className="rounded-full" />
