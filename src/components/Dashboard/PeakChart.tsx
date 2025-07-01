@@ -40,9 +40,8 @@ const PeakHoursChart: React.FC = () => {
       backgroundColor: '#28282D',
       borderColor: '#52525B',
       style: { color: '#fff' },
-      formatter: function (this: any) {
-        // Find the data object for the hovered point
-        const pointIndex = this.point.index;
+      formatter: function () {
+        const pointIndex = (this as any).point.index;
         const pointData = data[pointIndex];
         return `<b><span style=\"color:#4ade80\">Time:</span></b> ${pointData.time}<br/><b>Orders:</b> ${this.y}`;
       }
