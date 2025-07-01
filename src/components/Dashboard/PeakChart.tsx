@@ -41,7 +41,6 @@ const PeakHoursChart: React.FC = () => {
       borderColor: '#52525B',
       style: { color: '#fff' },
       formatter: function () {
-        // @ts-ignore
         return `<b><span style="color:#4ade80">Time:</span></b> ${this.x}<br/><b>Orders:</b> ${this.y}`
       }
     },
