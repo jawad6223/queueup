@@ -8,26 +8,28 @@ import PeakHoursChart from "./PeakChart";
 
 const Dashboard: React.FC = () => {
 
-    const statuses = ['Active', 'Cancelled', 'Completed'];
     const [isOpen, setIsOpen] = useState<boolean[]>(Array(DashboardData.length).fill(false));
-    const [isOpen1, setIsOpen1] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Active'));
     const [selectedStatus1, setSelectedStatus1] = useState('Active');
+    const [isOpen1, setIsOpen1] = useState(false);
     const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
     const totalPages = Math.ceil(OrderData.length / itemsPerPage);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const filteredData = OrderData.filter(
+        (order) => order.status === selectedStatus1
+    );
+    const statuses = ['Active', 'Cancelled', 'Completed'];
 
     const togglesDropdown = (index: number) => {
         setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
     };
 
-
     const toggleDropdowns = () => setIsOpen1(!isOpen1);
-    const selectOptions = (option: string) => {
-        setSelectedStatus1(option);
+    const selectOptions = (status: string) => {
+        setSelectedStatus1(status);
         setIsOpen1(false);
     };
 
@@ -59,9 +61,8 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
-                dropdownRefs.current.every(
-                    ref => ref && !ref.contains(event.target as Node)
-                )
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
             ) {
                 setIsOpen1(false);
                 setOpenIndex(null);
@@ -69,10 +70,13 @@ const Dashboard: React.FC = () => {
         };
 
         document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
-    const paginatedData = OrderData.slice(
+
+    const paginatedData = filteredData.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -103,6 +107,26 @@ const Dashboard: React.FC = () => {
         return pages
     }
 
+    const statusColors = {
+        Active: {
+            dot: '#34C759',
+            text: '#34C759',
+            bg: '#34C7591A',
+        },
+        Completed: {
+            dot: '#4CD964',
+            text: '#4CD964',
+            bg: '#4CD9641A',
+        },
+        Cancelled: {
+            dot: '#FF3B30',
+            text: '#FF3B30',
+            bg: '#FF3B301A',
+        },
+    };
+
+    const statusColor = statusColors[selectedStatus1 as keyof typeof statusColors];
+
     return (
         <div className="bg-[#26262B] px-[32px] py-4">
             <OrderChart />
@@ -111,7 +135,7 @@ const Dashboard: React.FC = () => {
                 {DashboardData.map((item, index) => (
                     <div
                         key={index}
-                        className="bg-[#3D3C3F] shadow-xs px-5 py-4 rounded-lg"
+                        className="bg-[#3D3C3F] shadow-xs px-5 py-4 rounded-lg animated-border"
                     >
                         <div className="flex items-center justify-between">
                             <h1 className="text-white font-medium text-[1.25rem]">
@@ -158,12 +182,25 @@ const Dashboard: React.FC = () => {
                             Order Management
                         </div>
                         <div className="flex items-center font-exo1 gap-2.5">
-                            <div className="w-2 rounded-full h-2 bg-[#34C759] leading-[0px]" />
-                            <div className="font-semibold text-[0.875rem] text-[#34C759] uppercase leading-[18.61px] ">
-                                Active
+                            <div
+                                className="w-2 h-2 rounded-full leading-[0px]"
+                                style={{ backgroundColor: statusColor?.dot }}
+                            />
+                            <div className="font-semibold text-[0.875rem] uppercase leading-[18.61px]" style={{ color: statusColor?.text }}>
+                                {selectedStatus1}
                             </div>
-                            <div className="bg-[#34C7591A] px-3 py-1 rounded-[66px] text-[#34C759] font-exo1 text-[0.75rem] ">
-                                234
+                            <div
+                                className="px-3 py-1 rounded-[66px] font-exo1 text-[0.75rem]"
+                                style={{
+                                    color: statusColor?.text,
+                                    backgroundColor: statusColor?.bg,
+                                }}
+                            >
+                                {
+                                    DashboardData[0].numbers[
+                                    selectedStatus1 as 'Active' | 'Completed' | 'Cancelled'
+                                    ] ?? 0
+                                }
                             </div>
                         </div>
                     </div>
@@ -173,7 +210,7 @@ const Dashboard: React.FC = () => {
                     >
                         <button
                             onClick={toggleDropdowns}
-                            className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer"
+                            className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
                         >
                             {selectedStatus1}
                             <span className={`transition-transform duration-300 ${isOpen1 ? 'rotate-180' : ''}`}>
@@ -197,7 +234,7 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     {paginatedData.map((order, index) => (
-                        <div key={index} className="flex items-center w-full justify-between p-4 bg-[#27272A] flex-wrap gap-4 cursor-pointer">
+                        <div key={index} className="flex items-center w-full justify-between p-4 bg-[#27272A] flex-wrap gap-4 rounded-lg">
                             <div className="flex items-center gap-2">
                                 <div className="w-10">
                                     <img src="/images/person.png" alt="logo" width={74} height={67} />
@@ -211,8 +248,8 @@ const Dashboard: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="relative" ref={dropdownRef}>
-                                <div className="flex items-center gap-2" onClick={() => togglesDropdown(index)}>
+                            <div className="relative">
+                                <div className="flex items-center gap-2 cursor-pointer" onClick={() => togglesDropdown(index)}>
                                     <div className="leading-[0px] text-[0.875rem] text-[#FFFFFF] font-exo1 font-medium ">
                                         {order.coachName}
                                     </div>

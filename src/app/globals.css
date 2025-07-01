@@ -29,3 +29,22 @@ body {
   scrollbar-width: thin;
   scrollbar-color: white transparent;
 }
+
+@keyframes snakeBorder {
+  100% {
+    --border-angle: 360deg;
+  }
+}
+
+.animated-border {
+  --border-angle: 0deg;
+  border: 2px solid transparent;
+  border-radius: 0.75rem; /* matches Tailwind `rounded-lg` */
+  background:
+    linear-gradient(#3D3C3F, #3D3C3F) padding-box,
+    conic-gradient(from var(--border-angle), white 0%, red 25%, white 50%, red 75%, white 100%) border-box;
+  animation: snakeBorder 4s linear infinite;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+

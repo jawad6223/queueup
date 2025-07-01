@@ -12,6 +12,10 @@ const Header: React.FC = () => {
 
     const [scrolled, setScrolled] = useState(false)
     //   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const exportTime = new Date().toLocaleString();
+    const coaches = ['Alex Thompson', 'Jessica Rodriguez', 'Maria Garcia'];
+    const timezones = ['UTC', 'America/New_York', 'Asia/Karachi', 'Europe/Paris'];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,19 +51,61 @@ const Header: React.FC = () => {
                     </div>
                 </div>
                 <div className="hidden sm:flex items-center gap-4">
-                    <button className="flex items-center gap-2 bg-[#EF4444] text-white px-4 py-2 rounded-md cursor-pointer">
+                    <button className="flex items-center gap-2 bg-[#EF4444] text-white px-4 py-2 rounded-md cursor-pointer" onClick={() => setIsModalOpen(true)}>
                         Export to CSV <PiExportBold />
                     </button>
                     <LuBell className="text-white cursor-pointer text-[20px]" />
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <Image src="/images/avatar.jpg" alt="bell" width={43} height={43} className="rounded-full" />
-                            <div className="flex flex-col gap-1">
-                                <h1 className="text-white font-bold">Jane Copper</h1>
-                                <p className="text-white font-normal text-[14px]">Energy Specialist</p>
-                            </div>
+                    <div className="flex items-center gap-2 cursor-pointer">
+                        <Image src="/images/avatar.jpg" alt="bell" width={43} height={43} className="rounded-full" />
+                        <div className="flex flex-col gap-1">
+                            <h1 className="text-white font-bold">Jane Copper</h1>
+                            <p className="text-white font-normal text-[14px]">Energy Specialist</p>
                         </div>
+                    </div>
                 </div>
             </div>
+
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#6A7589]/50 bg-opacity-60">
+                    <div className="bg-[#26262B] w-full max-w-md rounded-lg shadow-lg p-6 relative">
+                        {/* Close button */}
+                        <button
+                            onClick={() => setIsModalOpen(false)}
+                            className="absolute top-2 right-3 text-wihte text-2xl cursor-pointer"
+                        >
+                            &times;
+                        </button>
+
+                        <h2 className="text-xl font-semibold text-white mb-4">Export Summary</h2>
+
+                        {/* Export Time */}
+                        <div className="mb-4">
+                            <p className="text-sm text-white">Export Time:</p>
+                            <p className="font-medium text-gray-400">{exportTime}</p>
+                        </div>
+
+                        {/* Coach List */}
+                        <div className="mb-4">
+                            <p className="text-sm text-white">Coaches:</p>
+                            <ul className="list-disc list-inside text-gray-400">
+                                {coaches.map((coach, index) => (
+                                    <li key={index}>{coach}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Timezones */}
+                        <div>
+                            <p className="text-sm text-white">Timezones:</p>
+                            <ul className="list-disc list-inside text-gray-400">
+                                {timezones.map((zone, index) => (
+                                    <li key={index}>{zone}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Drawer component */}
             {/* <Drawer
