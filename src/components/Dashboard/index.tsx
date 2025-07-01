@@ -219,10 +219,10 @@ const Dashboard: React.FC = () => {
                                     <div className="cursor-pointer"><MdOutlineArrowRight /></div>
                                 </div>
                                 {openIndex === index && (
-                                    <ul className="absolute right-0 mt-2 w-[9.5rem] bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
+                                    <ul className="absolute right-0 mt-2 w-[8rem] break-words bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
                                         <li
                                             key={index}
-                                            className="px-2 py-2"
+                                            className="px-2 py-2 break-words"
                                             onClick={() => {
                                                 setOpenIndex(null);
                                             }}
