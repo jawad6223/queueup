@@ -5,16 +5,16 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 const data = [
-  { hour: '6AM', orders: 12 },
-  { hour: '8AM', orders: 35 },
-  { hour: '10AM', orders: 45 },
-  { hour: '12PM', orders: 78 },
-  { hour: '2PM', orders: 60 },
-  { hour: '4PM', orders: 40 },
-  { hour: '6PM', orders: 88 },
-  { hour: '8PM', orders: 94 },
-  { hour: '10PM', orders: 65 },
-  { hour: '12AM', orders: 22 }
+  { hour: '6AM', orders: 12, time: '06:00 AM' },
+  { hour: '8AM', orders: 35, time: '08:00 AM' },
+  { hour: '10AM', orders: 45, time: '10:00 AM' },
+  { hour: '12PM', orders: 78, time: '12:00 PM' },
+  { hour: '2PM', orders: 60, time: '02:00 PM' },
+  { hour: '4PM', orders: 40, time: '04:00 PM' },
+  { hour: '6PM', orders: 88, time: '06:00 PM' },
+  { hour: '8PM', orders: 94, time: '08:00 PM' },
+  { hour: '10PM', orders: 65, time: '10:00 PM' },
+  { hour: '12AM', orders: 22, time: '12:00 AM' }
 ]
 
 const PeakHoursChart: React.FC = () => {
@@ -40,8 +40,11 @@ const PeakHoursChart: React.FC = () => {
       backgroundColor: '#28282D',
       borderColor: '#52525B',
       style: { color: '#fff' },
-      formatter: function () {
-        return `<b><span style="color:#4ade80">Time:</span></b> ${this.x}<br/><b>Orders:</b> ${this.y}`
+      formatter: function (this: any) {
+        // Find the data object for the hovered point
+        const pointIndex = this.point.index;
+        const pointData = data[pointIndex];
+        return `<b><span style=\"color:#4ade80\">Time:</span></b> ${pointData.time}<br/><b>Orders:</b> ${this.y}`;
       }
     },
     series: [

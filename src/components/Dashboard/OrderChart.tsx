@@ -14,9 +14,25 @@ const weeklyData = [
   { name: 'Sun', orders: 76 }
 ]
 
-const monthlyData = weeklyData
-const threeMonthsData = weeklyData
-const yearlyData = weeklyData
+const monthlyData = [
+  { name: 'Week 1', orders: 210 },
+  { name: 'Week 2', orders: 320 },
+  { name: 'Week 3', orders: 280 },
+  { name: 'Week 4', orders: 350 }
+]
+
+const threeMonthsData = [
+  { name: 'Jan', orders: 900 },
+  { name: 'Feb', orders: 1100 },
+  { name: 'Mar', orders: 1050 }
+]
+
+const yearlyData = [
+  { name: '2021', orders: 3500 },
+  { name: '2022', orders: 4200 },
+  { name: '2023', orders: 4800 },
+  { name: '2024', orders: 5100 }
+]
 
 const OrderChart: React.FC = () => {
   const [range, setRange] = useState('Last 7 days')

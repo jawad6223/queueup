@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
     const statuses = ['Active', 'Cancelled', 'Completed'];
     const [isOpen, setIsOpen] = useState<boolean[]>(Array(DashboardData.length).fill(false));
     const [isOpen1, setIsOpen1] = useState(false);
-    const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Today'));
+    const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Active'));
     const [selectedStatus1, setSelectedStatus1] = useState('Active');
     const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -155,7 +155,7 @@ const Dashboard: React.FC = () => {
                             </div>
                         </div>
                         <p className="text-white font-semibold text-[2.7rem] mt-5">
-                            {item.number}
+                            {item.numbers[selectedStatus[index] as keyof typeof item.numbers] ?? 0}
                         </p>
                     </div>
                 ))}

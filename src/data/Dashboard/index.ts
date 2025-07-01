@@ -1,24 +1,24 @@
 export interface DashboardItem {
   label: string;
-  number: string;
+  numbers: { Active: number; Completed: number; Cancelled: number };
 }
 
 export const DashboardData: DashboardItem[] = [
   {
     label: "Orders Today",
-    number: "3",
+    numbers: { Active: 5, Completed: 2, Cancelled: 0 },
   },
   {
     label: "Coaches Online",
-    number: "1",
+    numbers: { Active: 2, Completed: 1, Cancelled: 0 },
   },
   {
     label: "Coaches in session",
-    number: "3",
+    numbers: { Active: 3, Completed: 1, Cancelled: 2 },
   },
   {
     label: "Players Online",
-    number: "3",
+    numbers: { Active: 3, Completed: 1, Cancelled: 2 },
   },
 ];
 
