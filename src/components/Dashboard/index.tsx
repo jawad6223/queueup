@@ -99,7 +99,7 @@ const Dashboard: React.FC = () => {
         <div className="bg-[#26262B] px-[32px] py-4">
             <OrderChart />
             <PeakHoursChart />
-            <div className="grid grid-cols-2 gap-4 mt-5">
+            <div className="grid sm:grid-cols-2 gap-4 mt-5">
                 {DashboardData.map((item, index) => (
                     <div
                         key={index}
