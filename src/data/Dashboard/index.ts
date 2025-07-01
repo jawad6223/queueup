@@ -10,7 +10,7 @@ export const DashboardData: DashboardItem[] = [
   },
   {
     label: "Coaches Online",
-    numbers: { Active: 2, Completed: 1, Cancelled: 0 },
+    numbers: { Active: 3, Completed: 1, Cancelled: 0 },
   },
   {
     label: "Coaches in session",

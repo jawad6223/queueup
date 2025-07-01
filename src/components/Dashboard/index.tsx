@@ -11,11 +11,12 @@ const Dashboard: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean[]>(Array(DashboardData.length).fill(false));
     const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Active'));
     const [selectedStatus1, setSelectedStatus1] = useState('Active');
+    console.log(selectedStatus1, "selectedStatus1>>>>>>>>>>>>>>")
     const [isOpen1, setIsOpen1] = useState(false);
     const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
+    const itemsPerPage = 5;
     const totalPages = Math.ceil(OrderData.length / itemsPerPage);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const filteredData = OrderData.filter(

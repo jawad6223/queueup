@@ -68,44 +68,49 @@ const Header: React.FC = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#6A7589]/50 bg-opacity-60">
                     <div className="bg-[#26262B] w-full max-w-md rounded-lg shadow-lg p-6 relative">
-                        {/* Close button */}
+                        {/* Close Button */}
                         <button
                             onClick={() => setIsModalOpen(false)}
-                            className="absolute top-2 right-3 text-wihte text-2xl cursor-pointer"
+                            className="absolute top-2 right-3 text-white text-2xl cursor-pointer"
                         >
                             &times;
                         </button>
 
                         <h2 className="text-xl font-semibold text-white mb-4">Export Summary</h2>
+                        <div className="mb-6 flex flex-col gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-white mb-2" htmlFor="export-date">
+                                    Filter by Date:
+                                </label>
+                                <input
+                                    type="date"
+                                    id="export-date"
+                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
+                                />
+                            </div>
 
-                        {/* Export Time */}
-                        <div className="mb-4">
-                            <p className="text-sm text-white">Export Time:</p>
-                            <p className="font-medium text-gray-400">{exportTime}</p>
+                            <div>
+                                <label className="block text-sm font-medium text-white mb-2" htmlFor="export-time">
+                                    Filter by Time:
+                                </label>
+                                <input
+                                    type="time"
+                                    id="export-time"
+                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
+                                />
+                            </div>
                         </div>
-
-                        {/* Coach List */}
-                        <div className="mb-4">
-                            <p className="text-sm text-white">Coaches:</p>
-                            <ul className="list-disc list-inside text-gray-400">
-                                {coaches.map((coach, index) => (
-                                    <li key={index}>{coach}</li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Timezones */}
-                        <div>
-                            <p className="text-sm text-white">Timezones:</p>
-                            <ul className="list-disc list-inside text-gray-400">
-                                {timezones.map((zone, index) => (
-                                    <li key={index}>{zone}</li>
-                                ))}
-                            </ul>
+                        <div className="flex justify-center">
+                            <button
+                                className="bg-[#EF4444] text-white px-6 py-2 rounded font-semibold hover:bg-[#dc2626] transition-colors cursor-pointer"
+                            >
+                                Export
+                            </button>
                         </div>
                     </div>
                 </div>
             )}
+
 
             {/* Drawer component */}
             {/* <Drawer
