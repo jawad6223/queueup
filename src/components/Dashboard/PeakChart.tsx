@@ -8,7 +8,8 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer
+  ResponsiveContainer,
+  TooltipProps
 } from 'recharts'
 
 const data = [
@@ -24,7 +25,7 @@ const data = [
   { hour: '12AM', orders: 22 }
 ]
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-[#3D3D3F] border border-[#52525B] rounded p-2 text-sm">
@@ -42,7 +43,7 @@ const PeakHoursChart: React.FC = () => {
       <div className="mb-4">
         <h3 className="text-xl font-semibold">Peak Hours</h3>
         <p className="text-sm text-gray-400">
-          Orders by hour throughout the day – see when we're busiest
+          Orders by hour throughout the day – see when we&apos;re busiest
         </p>
       </div>
 
