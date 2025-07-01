@@ -31,6 +31,7 @@ export interface OrderItem {
   duration: string;
   timeElapsed: string;
   orderValue: string;
+  timezone: string;
 }
 
 export const OrderData: OrderItem[] = [
@@ -42,7 +43,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "2 hours",
     timeElapsed: "45 minutes",
-    orderValue: "$75"
+    orderValue: "$75",
+    timezone: "UTC"
   },
   {
     id: "ORD002", 
@@ -52,7 +54,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "1 hour",
     timeElapsed: "30 minutes",
-    orderValue: "$50"
+    orderValue: "$50",
+    timezone: "America/New York"
   },
   {
     id: "ORD003",
@@ -62,7 +65,8 @@ export const OrderData: OrderItem[] = [
     status: "Active", 
     duration: "1.5 hours",
     timeElapsed: "20 minutes",
-    orderValue: "$60"
+    orderValue: "$60",
+    timezone: "Europe/London"
   },
   {
     id: "ORD004",
@@ -72,7 +76,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "45 minutes", 
     timeElapsed: "15 minutes",
-    orderValue: "$40"
+    orderValue: "$40",
+    timezone: "Asia/Karachi"
   },
   {
     id: "ORD002", 
@@ -82,7 +87,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "1 hour",
     timeElapsed: "30 minutes",
-    orderValue: "$50"
+    orderValue: "$50",
+    timezone: "Asia/Dubai"
   },
   {
     id: "ORD001",
@@ -92,7 +98,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "2 hours",
     timeElapsed: "45 minutes",
-    orderValue: "$75"
+    orderValue: "$75",
+    timezone: "Australia/Sydney"
   },
   {
     id: "ORD003",
@@ -102,7 +109,8 @@ export const OrderData: OrderItem[] = [
     status: "Active", 
     duration: "1.5 hours",
     timeElapsed: "20 minutes",
-    orderValue: "$60"
+    orderValue: "$60",
+    timezone: "Asia/Tokyo"
   },
   {
     id: "ORD004",
@@ -112,7 +120,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "45 minutes", 
     timeElapsed: "15 minutes",
-    orderValue: "$40"
+    orderValue: "$40",
+    timezone: "Asia/Kolkata"
   },
   {
     id: "ORD003",
@@ -122,7 +131,8 @@ export const OrderData: OrderItem[] = [
     status: "Active", 
     duration: "1.5 hours",
     timeElapsed: "20 minutes",
-    orderValue: "$60"
+    orderValue: "$60",
+    timezone: "Asia/Shanghai"
   },
   {
     id: "ORD002", 
@@ -132,7 +142,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "1 hour",
     timeElapsed: "30 minutes",
-    orderValue: "$50"
+    orderValue: "$50",
+    timezone: "Europe/Berlin"
   },
   {
     id: "ORD001",
@@ -142,7 +153,8 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "2 hours",
     timeElapsed: "45 minutes",
-    orderValue: "$75"
+    orderValue: "$75",
+    timezone: "Europe/Paris"
   },
   {
     id: "ORD004",
@@ -152,6 +164,7 @@ export const OrderData: OrderItem[] = [
     status: "Active",
     duration: "45 minutes", 
     timeElapsed: "15 minutes",
-    orderValue: "$40"
+    orderValue: "$40",
+    timezone: "Asia/Hong Kong"
   }
 ];

@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
     const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Active'));
     const [selectedStatus1, setSelectedStatus1] = useState('Active');
     const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const dropdownRef = useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
     const totalPages = Math.ceil(OrderData.length / itemsPerPage);
@@ -59,16 +59,18 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target as Node)
+                dropdownRefs.current.every(
+                    ref => ref && !ref.contains(event.target as Node)
+                )
             ) {
-                setIsOpen1(false)
+                setIsOpen1(false);
+                setOpenIndex(null);
             }
-        }
+        };
 
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [])
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const paginatedData = OrderData.slice(
         (currentPage - 1) * itemsPerPage,
@@ -101,17 +103,6 @@ const Dashboard: React.FC = () => {
         return pages
     }
 
-    const timezones = [
-        "UTC",
-        "GMT",
-        "Asia/Karachi",
-        "America/New_York",
-        "Europe/London",
-        "Asia/Dubai",
-        "Australia/Sydney"
-    ]
-
-
     return (
         <div className="bg-[#26262B] px-[32px] py-4">
             <OrderChart />
@@ -120,7 +111,7 @@ const Dashboard: React.FC = () => {
                 {DashboardData.map((item, index) => (
                     <div
                         key={index}
-                        className="bg-[#3D3C3F] shadow-xs px-4 py-4"
+                        className="bg-[#3D3C3F] shadow-xs px-5 py-4 rounded-lg"
                     >
                         <div className="flex items-center justify-between">
                             <h1 className="text-white font-medium text-[1.25rem]">
@@ -132,7 +123,7 @@ const Dashboard: React.FC = () => {
                             >
                                 <button
                                     onClick={() => toggleDropdown(index)}
-                                    className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer"
+                                    className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
                                 >
                                     {selectedStatus[index]}
                                     <span className={`transition-transform duration-300 ${isOpen[index] ? 'rotate-180' : ''}`}>
@@ -160,7 +151,7 @@ const Dashboard: React.FC = () => {
                     </div>
                 ))}
             </div>
-            <div className="mt-5 bg-[#3D3D3F] flex flex-col gap-5 p-5">
+            <div className="mt-5 bg-[#3D3D3F] flex flex-col gap-5 p-5 rounded-lg">
                 <div className="flex justify-between">
                     <div className="flex flex-col gap-2">
                         <div className="font-medium text-[1.25rem] leading-[26.58px] text-[#FFFFFF] ">
@@ -220,7 +211,7 @@ const Dashboard: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="relative">
+                            <div className="relative" ref={dropdownRef}>
                                 <div className="flex items-center gap-2" onClick={() => togglesDropdown(index)}>
                                     <div className="leading-[0px] text-[0.875rem] text-[#FFFFFF] font-exo1 font-medium ">
                                         {order.coachName}
@@ -228,18 +219,16 @@ const Dashboard: React.FC = () => {
                                     <div className="cursor-pointer"><MdOutlineArrowRight /></div>
                                 </div>
                                 {openIndex === index && (
-                                    <ul className="absolute right-0 mt-2 w-48 bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
-                                        {timezones.map((tz, index) => (
-                                            <li
-                                                key={index}
-                                                className="px-4 py-2 hover:bg-[#444] cursor-pointer"
-                                                onClick={() => {
-                                                    setOpenIndex(null);
-                                                }}
-                                            >
-                                                {tz}
-                                            </li>
-                                        ))}
+                                    <ul className="absolute right-0 mt-2 w-[9.5rem] bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
+                                        <li
+                                            key={index}
+                                            className="px-2 py-2"
+                                            onClick={() => {
+                                                setOpenIndex(null);
+                                            }}
+                                        >
+                                            {order.timezone}
+                                        </li>
                                     </ul>
                                 )}
                             </div>

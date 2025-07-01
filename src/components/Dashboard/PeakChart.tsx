@@ -41,7 +41,7 @@ const PeakHoursChart: React.FC = () => {
       borderColor: '#52525B',
       style: { color: '#fff' },
       formatter: function () {
-        const pointIndex = (this as any).point.index;
+        const pointIndex = (this as unknown as { point: { index: number }; y: number }).point.index;
         const pointData = data[pointIndex];
         return `<b><span style=\"color:#4ade80\">Time:</span></b> ${pointData.time}<br/><b>Orders:</b> ${this.y}`;
       }
