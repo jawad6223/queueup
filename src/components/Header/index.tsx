@@ -13,9 +13,6 @@ const Header: React.FC = () => {
     const [scrolled, setScrolled] = useState(false)
     //   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const exportTime = new Date().toLocaleString();
-    const coaches = ['Alex Thompson', 'Jessica Rodriguez', 'Maria Garcia'];
-    const timezones = ['UTC', 'America/New_York', 'Asia/Karachi', 'Europe/Paris'];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -102,9 +99,9 @@ const Header: React.FC = () => {
                         </div>
                         <div className="flex justify-center">
                             <button
-                                className="bg-[#EF4444] text-white px-6 py-2 rounded font-semibold hover:bg-[#dc2626] transition-colors cursor-pointer"
+                                className="bg-[#EF4444] text-white px-6 py-2 flex items-center gap-2 rounded font-semibold hover:bg-[#dc2626] transition-colors cursor-pointer"
                             >
-                                Export
+                                Export <PiExportBold />
                             </button>
                         </div>
                     </div>
