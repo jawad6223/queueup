@@ -48,6 +48,10 @@ body {
   }
 }
 
+.font-inter {
+  font-family: var(--font-inter);
+}
+
 @keyframes bell-shake {
 
   0%,
@@ -75,4 +79,42 @@ body {
 .bell-animate {
   animation: bell-shake 1s ease-in-out infinite;
   transform-origin: top center;
+}
+
+@keyframes arrowBounce {
+
+  0%,
+  100% {
+    transform: translateX(0);
+    color: #EF4444;
+  }
+
+  50% {
+    transform: translateX(4px);
+    color: #EF4444;
+  }
+}
+
+.animate-arrow {
+  animation: arrowBounce 0.7s infinite ease-in-out;
+  color: #EF4444;
+}
+
+@keyframes arrowBounceLeft {
+
+  0%,
+  100% {
+    transform: translateX(0);
+    color: #EF4444;
+  }
+
+  50% {
+    transform: translateX(-4px);
+    color: #EF4444;
+  }
+}
+
+.animate-arrow-left {
+  animation: arrowBounceLeft 0.7s infinite ease-in-out;
+  color: #EF4444;
 }

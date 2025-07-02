@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { IoReorderThree } from "react-icons/io5";
 import { LuBell } from "react-icons/lu";
 import { PiExportBold } from "react-icons/pi";
+import { MdKeyboardArrowDown } from 'react-icons/md'
 // import Drawer from "../Drawer";
 // import { AdminMenus } from "@/data/Sidebar";
 
@@ -13,6 +14,19 @@ const Header: React.FC = () => {
     const [scrolled, setScrolled] = useState(false)
     //   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedOption, setSelectedOption] = useState('')
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const options = ['Order Over Time', 'Peak Time', 'Order Management'];
+    const fullText = 'Good Evening John..!'
+    const [text, setText] = useState('');
+    const [isTypingComplete, setIsTypingComplete] = useState(false)
+
+    const toggleDropdown = () => setIsOpen(!isOpen)
+    const selectOption = (option: string) => {
+        setSelectedOption(option)
+        setIsOpen(false)
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,7 +35,33 @@ const Header: React.FC = () => {
 
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
+
+    useEffect(() => {
+        let index = 0;
+
+        const interval = setInterval(() => {
+            if (index < fullText.length) {
+                setText((prev) => prev + fullText.charAt(index));
+                index++;
+            } else {
+                clearInterval(interval);
+                setIsTypingComplete(true);
+            }
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, []);
 
 
     //   const toggleDrawer = () => {
@@ -40,7 +80,8 @@ const Header: React.FC = () => {
                     </span>
                     <div className="flex flex-col gap-0.5">
                         <h1 className="text-[#EE3846] font-bold text-[2rem]">
-                            Good Evening John..!
+                            {text}
+                            {!isTypingComplete && <span className="inline-block animate-pulse">|</span>}
                         </h1>
                         <h2 className="text-white font-semibold text-[1.125rem]">
                             Welcome to Queue Up
@@ -100,6 +141,33 @@ const Header: React.FC = () => {
                                     }}
                                     className="w-full px-3 py-2 rounded bg-[#1F1F24] cursor-pointer text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
                                 />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-white mb-2" htmlFor="export-time">
+                                    Select Option:
+                                </label>
+                                <div className="relative w-full" ref={dropdownRef}>
+                                    <button
+                                        onClick={toggleDropdown}
+                                        className="w-full flex justify-between items-center px-3 py-2 rounded bg-[#1F1F24] cursor-pointer text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
+                                    >
+                                        {selectedOption || <span className="text-gray-400">Select Option</span>}
+                                        <MdKeyboardArrowDown className={`ml-2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    {isOpen && (
+                                        <ul className="absolute left-0 w-full right-0 z-10 mt-1 bg-[#1F1F24] border border-gray-600 rounded shadow-lg">
+                                            {options.map((option) => (
+                                                <li
+                                                    key={option}
+                                                    onClick={() => selectOption(option)}
+                                                    className={`px-4 py-2 cursor-pointer text-white hover:bg-[#444] ${selectedOption === option ? 'bg-[#444]' : ''}`}
+                                                >
+                                                    {option}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
                             </div>
                         </div>
                         <div className="flex justify-center">

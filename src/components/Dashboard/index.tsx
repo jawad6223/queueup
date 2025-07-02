@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { DashboardData, OrderData, OrderItem } from "@/data/Dashboard";
-import { MdKeyboardArrowDown, MdOutlineArrowRight, MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
+import { RiArrowDropDownFill } from "react-icons/ri";
 import OrderChart from "./OrderChart";
 import PeakHoursChart from "./PeakChart";
 
@@ -12,7 +13,7 @@ const Dashboard: React.FC = () => {
     const [selectedStatus, setSelectedStatus] = useState<string[]>(Array(DashboardData.length).fill('Active'));
     const [selectedStatus1, setSelectedStatus1] = useState('Active');
     const [isOpen1, setIsOpen1] = useState(false);
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [openId, setOpenId] = useState<string | null>(null);
     const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,11 +23,11 @@ const Dashboard: React.FC = () => {
 
     const statuses = ['Active', 'Cancelled', 'Completed'];
 
-    const togglesDropdown = (index: number) => {
-        setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    const togglesDropdown = (index: string) => {
+        setOpenId(prevId => (prevId === index ? null : index));
     };
 
-    const toggleDropdowns = () => setIsOpen1(!isOpen1);
+    const toggleDropdowns = () => setIsOpen1(prev => !prev);
     const selectOptions = (status: string) => {
         setSelectedStatus1(status);
         setIsOpen1(false);
@@ -64,10 +65,8 @@ const Dashboard: React.FC = () => {
                 !dropdownRef.current.contains(event.target as Node)
             ) {
                 setIsOpen1(false);
-                setOpenIndex(null);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -230,43 +229,40 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     {paginatedData.map((order, index) => (
-                        <div key={index} className="flex items-center w-full justify-between p-4 bg-[#27272A] flex-wrap gap-4 rounded-lg">
-                            <div className="flex items-center gap-2">
-                                <div className="w-10">
-                                    <img src="/images/person.png" alt="logo" width={74} height={67} />
-                                </div>
-                                <div className="flex flex-col ">
+                        <div key={index} className="p-4 bg-[#27272A] rounded-lg cursor-pointer transform transition-transform duration-300 hover:scale-95 origin-center">
+                            <div className="flex items-center justify-between" onClick={() => togglesDropdown(String(index))}>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-10">
+                                        <img src="/images/person.png" alt="logo" width={74} height={67} />
+                                    </div>
                                     <div className=" text-[1rem] font-bold font-exo1 text-[#FFFFFF]  ">
                                         {order.customerName}
                                     </div>
-                                    <div className="font-exo1 font-normal text-[0.75rem] text-[#B8B8B8] leading-[15.95px] ">
-                                        {order.service}
-                                    </div>
                                 </div>
-                            </div>
-                            <div className="relative">
-                                <div className="flex items-center gap-2 cursor-pointer" onClick={() => togglesDropdown(index)}>
+                                <div className="flex items-center gap-2 cursor-pointer">
                                     <div className="leading-[0px] text-[0.875rem] text-[#FFFFFF] font-exo1 font-medium ">
                                         {order.coachName}
                                     </div>
-                                    <div className="cursor-pointer"><MdOutlineArrowRight /></div>
+                                    <div className={`cursor-pointer transition-transform duration-300 ${openId === String(index) ? 'rotate-180' : ''}`}>
+                                        <RiArrowDropDownFill />
+                                    </div>
                                 </div>
-                                {openIndex === index && (
-                                    <ul className="absolute right-0 mt-2 w-[10rem] break-words bg-[#27272A] border border-[#52525B] rounded z-10 text-white shadow-lg">
-                                        {order.timezone.map((coach, idx) => (
-                                            <li
-                                                key={idx}
-                                                className="px-2 py-2 break-words"
-                                                onClick={() => {
-                                                    setOpenIndex(null);
-                                                }}
-                                            >
-                                                <span className="font-semibold">{coach}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
                             </div>
+                            {openId === String(index) && (
+                                <div className="flex items-center justify-between mt-2">
+                                    <div className="font-exo1 font-normal text-[0.75rem] text-[#B8B8B8] leading-[15.95px] font-inter">
+                                        {order.service} - {order.timeElapsed} elapsed
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <p className="font-medium font-inter">Coach:</p>
+                                        <p className="font-medium font-inter">{order.coach}</p>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <p className="font-medium font-inter">Timezone:</p>
+                                        <p className="font-medium font-inter">{order.timezone}</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -275,7 +271,7 @@ const Dashboard: React.FC = () => {
                     <div className="flex items-center justify-end gap-1">
                         <button
                             onClick={() => goToPage(1)}
-                            className="text-white cursor-pointer"
+                            className="text-white cursor-pointer animate-arrow-left"
                         >
                             «
                         </button>
@@ -309,7 +305,7 @@ const Dashboard: React.FC = () => {
                         </button>
                         <button
                             onClick={() => goToPage(totalPages)}
-                            className="text-white cursor-pointer"
+                            className="text-white cursor-pointer animate-arrow"
                         >
                             »
                         </button>

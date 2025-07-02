@@ -32,7 +32,8 @@ export interface OrderItem {
     duration: string;
     timeElapsed: string;
     orderValue: string;
-    timezone: string[];
+    coach: string;
+    timezone: string;
   }[];
   Completed: {
     id: string;
@@ -43,7 +44,8 @@ export interface OrderItem {
     duration: string;
     timeElapsed: string;
     orderValue: string;
-    timezone: string[];
+    coach: string;
+    timezone: string;
   }[];
   Cancelled: {
     id: string;
@@ -54,7 +56,8 @@ export interface OrderItem {
     duration: string;
     timeElapsed: string;
     orderValue: string;
-    timezone: string[];
+    coach: string;
+    timezone: string;
   }[];
 }
 
@@ -70,7 +73,8 @@ export const OrderData: OrderItem[] = [
         duration: "2 hours",
         timeElapsed: "45 minutes",
         orderValue: "$75",
-        timezone: ["Alex Thompson", "America/New York"]
+        coach: "Alex Thompson",
+        timezone: "America/New York"
       },
       {
         id: "ORD002",
@@ -81,7 +85,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
       {
         id: "ORD003",
@@ -92,7 +97,8 @@ export const OrderData: OrderItem[] = [
         duration: "1.5 hours",
         timeElapsed: "20 minutes",
         orderValue: "$60",
-        timezone: ["David Wilson", "Europe/London"]
+        coach: "David Wilson",
+        timezone: "Europe/London"
       },
       {
         id: "ORD004",
@@ -103,7 +109,8 @@ export const OrderData: OrderItem[] = [
         duration: "45 minutes",
         timeElapsed: "15 minutes",
         orderValue: "$40",
-        timezone: ["Maria Garcia", "Asia/Karachi"]
+        coach: "Maria Garcia",
+        timezone: "Asia/Karachi"
       },
       {
         id: "ORD002",
@@ -114,7 +121,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
       {
         id: "ORD001",
@@ -125,7 +133,8 @@ export const OrderData: OrderItem[] = [
         duration: "2 hours",
         timeElapsed: "45 minutes",
         orderValue: "$75",
-        timezone: ["Alex Thompson", "America/New York"]
+        coach: "Alex Thompson",
+        timezone: "America/New York"
       },
       {
         id: "ORD003",
@@ -136,7 +145,8 @@ export const OrderData: OrderItem[] = [
         duration: "1.5 hours",
         timeElapsed: "20 minutes",
         orderValue: "$60",
-        timezone: ["David Wilson", "Europe/London"]
+        coach: "David Wilson",
+        timezone: "Europe/London"
       },
       {
         id: "ORD004",
@@ -147,7 +157,8 @@ export const OrderData: OrderItem[] = [
         duration: "45 minutes",
         timeElapsed: "15 minutes",
         orderValue: "$40",
-        timezone: ["Maria Garcia", "Asia/Karachi"]
+        coach: "Maria Garcia",
+        timezone: "Asia/Karachi"
       },
     ],
     Completed: [
@@ -160,7 +171,8 @@ export const OrderData: OrderItem[] = [
         duration: "2 hours",
         timeElapsed: "45 minutes",
         orderValue: "$75",
-        timezone: ["Alex Thompson", "America/New York"]
+        coach: "Alex Thompson",
+        timezone: "America/New York"
       },
       {
         id: "ORD002",
@@ -171,7 +183,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
       {
         id: "ORD001",
@@ -182,7 +195,8 @@ export const OrderData: OrderItem[] = [
         duration: "2 hours",
         timeElapsed: "45 minutes",
         orderValue: "$75",
-        timezone: ["Alex Thompson", "America/New York"]
+        coach: "Alex Thompson",
+        timezone: "America/New York"
       },
       {
         id: "ORD002",
@@ -193,7 +207,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
       {
         id: "ORD002",
@@ -204,7 +219,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
     ],
     Cancelled: [
@@ -217,7 +233,8 @@ export const OrderData: OrderItem[] = [
         duration: "2 hours",
         timeElapsed: "45 minutes",
         orderValue: "$75",
-        timezone: ["Alex Thompson", "America/New York"]
+        coach: "Alex Thompson",
+        timezone: "America/New York"
       },
       {
         id: "ORD002",
@@ -228,7 +245,8 @@ export const OrderData: OrderItem[] = [
         duration: "1 hour",
         timeElapsed: "30 minutes",
         orderValue: "$50",
-        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+        coach: "Jessica Rodriguez",
+        timezone: "Asia/Dubai"
       },
     ]
   }

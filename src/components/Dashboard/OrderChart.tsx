@@ -103,7 +103,7 @@ const OrderChart: React.FC = () => {
 
   return (
     <div
-      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 rounded-none p-10' : ''
+      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
         }`}
     >
       <div className="flex justify-between items-center mb-4">
