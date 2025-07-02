@@ -51,7 +51,7 @@ const Header: React.FC = () => {
                     <button className="flex items-center gap-2 bg-[#EF4444] text-white px-4 py-2 rounded-md cursor-pointer" onClick={() => setIsModalOpen(true)}>
                         Export to CSV <PiExportBold />
                     </button>
-                    <LuBell className="text-white cursor-pointer text-[20px]" />
+                    <LuBell className="text-white cursor-pointer text-[20px] bell-animate" />
                     <div className="flex items-center gap-2 cursor-pointer">
                         <Image src="/images/avatar.jpg" alt="bell" width={43} height={43} className="rounded-full" />
                         <div className="flex flex-col gap-1">
@@ -71,7 +71,6 @@ const Header: React.FC = () => {
                         >
                             &times;
                         </button>
-
                         <h2 className="text-xl font-semibold text-white mb-4">Export Summary</h2>
                         <div className="mb-6 flex flex-col gap-4">
                             <div>
