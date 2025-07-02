@@ -67,10 +67,10 @@ const PeakHoursChart: React.FC = () => {
 
   return (
     <div
-      className={`text-white rounded-2xl w-full overflow-auto transition-all duration-300 [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
+      className={`text-white rounded-2xl w-full overflow-auto transition-all duration-300 [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border 
         }`}
     >
-      <div className="bg-[#3D3D3F] p-6 border border-[#52525B]">
+      <div className={`bg-[#3D3D3F] p-6 border border-[#52525B] transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center mx-4 my-4 rounded-lg' : ''}`}>
         <div className="flex justify-between items-center mb-4">
           <div>
             <h3 className="text-xl font-semibold">Peak Hours</h3>
