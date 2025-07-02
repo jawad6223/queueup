@@ -60,7 +60,7 @@ const PeakHoursChart: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full mt-5">
+    <div className="bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full">
       <div className="mb-4">
         <h3 className="text-xl font-semibold">Peak Hours</h3>
         <p className="text-sm text-gray-400">

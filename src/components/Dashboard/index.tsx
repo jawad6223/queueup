@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
 
 
     const toggleDropdown = (index: number) => {
-        setIsOpen((prev) => prev.map((open, i) => i === index ? !open : open));
+        setIsOpen((prev) => prev.map((open, i) => i === index ? !open : false));
     };
     const selectOption = (cardIndex: number, option: string) => {
         setSelectedStatus((prev) => prev.map((status, i) => i === cardIndex ? option : status));
@@ -127,24 +127,26 @@ const Dashboard: React.FC = () => {
     const statusColor = statusColors[selectedStatus1 as keyof typeof statusColors];
 
     return (
-        <div className="bg-[#26262B] px-[32px] py-4">
-            <OrderChart />
-            <PeakHoursChart />
-            <div className="grid sm:grid-cols-2 gap-4 mt-5">
+        <div className="bg-[#26262B] px-[32px] py-4 rounded-bl-lg rounded-br-lg">
+            <div className="grid md:grid-cols-2 gap-4">
+                <OrderChart />
+                <PeakHoursChart />
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
                 {DashboardData.map((item, index) => (
                     <div
                         key={index}
-                        className="relative w-full rounded-2xl [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border"
+                        className="relative w-full rounded-2xl transform transition-transform duration-300 hover:scale-105 [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border"
                     >
-                        <div className="bg-[#3D3C3F] p-5 rounded-[14px]">
-                            <div className="flex items-center justify-between">
-                                <h1 className="text-white font-medium text-[1.25rem]">
+                        <div className="bg-gradient-to-r from-[#EF4444] to-[#3D3C3F] p-4 rounded-[14px] flex flex-col">
+                            <div className="flex items-center justify-between gap-3 min-h-[3.5rem]">
+                                <h1 className="text-white font-medium text-[1.25rem] leading-[26.58px]">
                                     {item.label}
                                 </h1>
                                 <div className="relative" ref={el => { dropdownRefs.current[index] = el; }}>
                                     <button
                                         onClick={() => toggleDropdown(index)}
-                                        className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
+                                        className="bg-[#28282D] text-white px-3 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
                                     >
                                         {selectedStatus[index]}
                                         <span className={`transition-transform duration-300 ${isOpen[index] ? 'rotate-180' : ''}`}>
@@ -166,7 +168,7 @@ const Dashboard: React.FC = () => {
                                     )}
                                 </div>
                             </div>
-                            <p className="text-white font-semibold text-[2.7rem] mt-5">
+                            <p className="text-white font-semibold text-[2.7rem] mt-3">
                                 {item.numbers[selectedStatus[index] as keyof typeof item.numbers] ?? 0}
                             </p>
                         </div>

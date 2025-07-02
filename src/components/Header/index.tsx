@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     //   };
 
     return (
-        <header className={`fixed top-0 left-0 bg-[#26262B] lg:left-[216px] xl:left-[256px] 2xl:left-[316px] ml-4 lg:ml-0 mr-4 px-[32px] right-0 z-20 py-3 transition-all duration-300 ${scrolled ? 'mt-0' : 'mt-4'}`}>
+        <header className={`fixed top-0 rounded-tl-lg rounded-tr-lg left-0 bg-[#26262B] lg:left-[216px] xl:left-[256px] 2xl:left-[316px] ml-4 lg:ml-0 mr-4 px-[32px] right-0 z-20 py-3 transition-all duration-300 ${scrolled ? 'mt-0' : 'mt-4'}`}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <span
@@ -80,10 +80,13 @@ const Header: React.FC = () => {
                                 <input
                                     type="date"
                                     id="export-date"
-                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
+                                    onClick={(e) => {
+                                        const input = e.currentTarget as HTMLInputElement;
+                                        input.showPicker?.();
+                                    }}
+                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] cursor-pointer text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
                                 />
                             </div>
-
                             <div>
                                 <label className="block text-sm font-medium text-white mb-2" htmlFor="export-time">
                                     Filter by Time:
@@ -91,7 +94,11 @@ const Header: React.FC = () => {
                                 <input
                                     type="time"
                                     id="export-time"
-                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
+                                    onClick={(e) => {
+                                        const input = e.currentTarget as HTMLInputElement;
+                                        input.showPicker?.();
+                                    }}
+                                    className="w-full px-3 py-2 rounded bg-[#1F1F24] cursor-pointer text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EF4444]"
                                 />
                             </div>
                         </div>

@@ -1,10 +1,12 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { MdOutlineDashboard, MdOutlineBorderAll, MdPerson2 } from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineBorderAll, MdPerson3 } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
 import { BiDollar } from "react-icons/bi";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoSettingsOutline, IoGameControllerSharp } from "react-icons/io5";
+import { SlNote } from "react-icons/sl";
+
 
 
 export interface MenuItem {
@@ -43,13 +45,13 @@ export const AdminMenus: SidebarMenu[] = [
         id: "coaches",
         title: "Coaches",
         link: "/coaches",
-        icon: MdPerson2,
+        icon: MdPerson3,
       },
       {
         id: "games",
         title: "Games",
         link: "/games",
-        icon: MdPerson2,
+        icon: IoGameControllerSharp,
       },
       {
         id: "revenuemanagement",
@@ -61,7 +63,7 @@ export const AdminMenus: SidebarMenu[] = [
         id: "manual",
         title: "Manual",
         link: "/manual",
-        icon: BiDollar,
+        icon: SlNote,
       },
       {
         id: "setting",
