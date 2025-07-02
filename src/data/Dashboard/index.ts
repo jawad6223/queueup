@@ -23,148 +23,180 @@ export const DashboardData: DashboardItem[] = [
 ];
 
 export interface OrderItem {
-  id: string;
-  customerName: string;
-  coachName: string;
-  service: string;
-  status: string;
-  duration: string;
-  timeElapsed: string;
-  orderValue: string;
-  timezone: string;
+  Active: {
+    id: string;
+    customerName: string;
+    coachName: string;
+    service: string;
+    status: string;
+    duration: string;
+    timeElapsed: string;
+    orderValue: string;
+    timezone: string[];
+  }[];
+  Completed: {
+    id: string;
+    customerName: string;
+    coachName: string;
+    service: string;
+    status: string;
+    duration: string;
+    timeElapsed: string;
+    orderValue: string;
+    timezone: string[];
+  }[];
+  Cancelled: {
+    id: string;
+    customerName: string;
+    coachName: string;
+    service: string;
+    status: string;
+    duration: string;
+    timeElapsed: string;
+    orderValue: string;
+    timezone: string[];
+  }[];
 }
 
 export const OrderData: OrderItem[] = [
   {
-    id: "ORD001",
-    customerName: "Sarah Johnson",
-    coachName: "Alex Thompson",
-    service: "Instant Session",
-    status: "Active",
-    duration: "2 hours",
-    timeElapsed: "45 minutes",
-    orderValue: "$75",
-    timezone: "UTC"
-  },
-  {
-    id: "ORD002", 
-    customerName: "Mike Chen",
-    coachName: "Jessica Rodriguez",
-    service: "Direct Session",
-    status: "Active",
-    duration: "1 hour",
-    timeElapsed: "30 minutes",
-    orderValue: "$50",
-    timezone: "America/New York"
-  },
-  {
-    id: "ORD003",
-    customerName: "Emily Davis",
-    coachName: "David Wilson",
-    service: "Scheduled Session",
-    status: "Active", 
-    duration: "1.5 hours",
-    timeElapsed: "20 minutes",
-    orderValue: "$60",
-    timezone: "Europe/London"
-  },
-  {
-    id: "ORD004",
-    customerName: "Robert Brown",
-    coachName: "Maria Garcia",
-    service: "Instant Session",
-    status: "Active",
-    duration: "45 minutes", 
-    timeElapsed: "15 minutes",
-    orderValue: "$40",
-    timezone: "Asia/Karachi"
-  },
-  {
-    id: "ORD002", 
-    customerName: "Mike Chen",
-    coachName: "Jessica Rodriguez",
-    service: "Direct Session",
-    status: "Active",
-    duration: "1 hour",
-    timeElapsed: "30 minutes",
-    orderValue: "$50",
-    timezone: "Asia/Dubai"
-  },
-  {
-    id: "ORD001",
-    customerName: "Sarah Johnson",
-    coachName: "Alex Thompson",
-    service: "Instant Session",
-    status: "Active",
-    duration: "2 hours",
-    timeElapsed: "45 minutes",
-    orderValue: "$75",
-    timezone: "Australia/Sydney"
-  },
-  {
-    id: "ORD003",
-    customerName: "Emily Davis",
-    coachName: "David Wilson",
-    service: "Scheduled Session",
-    status: "Active", 
-    duration: "1.5 hours",
-    timeElapsed: "20 minutes",
-    orderValue: "$60",
-    timezone: "Asia/Tokyo"
-  },
-  {
-    id: "ORD004",
-    customerName: "Robert Brown",
-    coachName: "Maria Garcia",
-    service: "Instant Session",
-    status: "Active",
-    duration: "45 minutes", 
-    timeElapsed: "15 minutes",
-    orderValue: "$40",
-    timezone: "Asia/Kolkata"
-  },
-  {
-    id: "ORD003",
-    customerName: "Emily Davis",
-    coachName: "David Wilson",
-    service: "Scheduled Session",
-    status: "Active", 
-    duration: "1.5 hours",
-    timeElapsed: "20 minutes",
-    orderValue: "$60",
-    timezone: "Asia/Shanghai"
-  },
-  {
-    id: "ORD002", 
-    customerName: "Mike Chen",
-    coachName: "Jessica Rodriguez",
-    service: "Direct Session",
-    status: "Active",
-    duration: "1 hour",
-    timeElapsed: "30 minutes",
-    orderValue: "$50",
-    timezone: "Europe/Berlin"
-  },
-  {
-    id: "ORD001",
-    customerName: "Sarah Johnson",
-    coachName: "Alex Thompson",
-    service: "Instant Session",
-    status: "Active",
-    duration: "2 hours",
-    timeElapsed: "45 minutes",
-    orderValue: "$75",
-    timezone: "Europe/Paris"
-  },
-  {
-    id: "ORD004",
-    customerName: "Robert Brown",
-    coachName: "Maria Garcia",
-    service: "Instant Session",
-    status: "Active",
-    duration: "45 minutes", 
-    timeElapsed: "15 minutes",
-    orderValue: "$40",
-    timezone: "Asia/Hong Kong"
+    Active: [
+      {
+        id: "ORD001",
+        customerName: "Sarah Johnson",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "2 hours",
+        timeElapsed: "45 minutes",
+        orderValue: "$75",
+        timezone: ["Alex Thompson", "America/New York"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
+      {
+        id: "ORD003",
+        customerName: "Emily Davis",
+        coachName: "View Details",
+        service: "Scheduled Session",
+        status: "Active",
+        duration: "1.5 hours",
+        timeElapsed: "20 minutes",
+        orderValue: "$60",
+        timezone: ["David Wilson", "Europe/London"]
+      },
+      {
+        id: "ORD004",
+        customerName: "Robert Brown",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "45 minutes",
+        timeElapsed: "15 minutes",
+        orderValue: "$40",
+        timezone: ["Maria Garcia", "Asia/Karachi"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
+      {
+        id: "ORD001",
+        customerName: "Sarah Johnson",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "2 hours",
+        timeElapsed: "45 minutes",
+        orderValue: "$75",
+        timezone: ["Alex Thompson", "America/New York"]
+      },
+      {
+        id: "ORD003",
+        customerName: "Emily Davis",
+        coachName: "View Details",
+        service: "Scheduled Session",
+        status: "Active",
+        duration: "1.5 hours",
+        timeElapsed: "20 minutes",
+        orderValue: "$60",
+        timezone: ["David Wilson", "Europe/London"]
+      },
+      {
+        id: "ORD004",
+        customerName: "Robert Brown",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "45 minutes",
+        timeElapsed: "15 minutes",
+        orderValue: "$40",
+        timezone: ["Maria Garcia", "Asia/Karachi"]
+      },
+    ],
+    Completed: [
+      {
+        id: "ORD001",
+        customerName: "Sarah Johnson",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "2 hours",
+        timeElapsed: "45 minutes",
+        orderValue: "$75",
+        timezone: ["Alex Thompson", "America/New York"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
+    ],
+    Cancelled: [
+      {
+        id: "ORD001",
+        customerName: "Sarah Johnson",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "2 hours",
+        timeElapsed: "45 minutes",
+        orderValue: "$75",
+        timezone: ["Alex Thompson", "America/New York"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
+    ]
   }
-];
+]

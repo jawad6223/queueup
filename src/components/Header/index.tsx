@@ -65,7 +65,6 @@ const Header: React.FC = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#6A7589]/50 bg-opacity-60">
                     <div className="bg-[#26262B] w-full max-w-md rounded-lg shadow-lg p-6 relative">
-                        {/* Close Button */}
                         <button
                             onClick={() => setIsModalOpen(false)}
                             className="absolute top-2 right-3 text-white text-2xl cursor-pointer"
