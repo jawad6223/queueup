@@ -35,7 +35,8 @@ const yearlyData = [
 ]
 
 const OrderChart: React.FC = () => {
-  const [range, setRange] = useState('Last 7 days')
+  const [range, setRange] = useState('Last 7 days');
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const getData = () => {
     switch (range) {
@@ -48,6 +49,10 @@ const OrderChart: React.FC = () => {
       default:
         return weeklyData
     }
+  }
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev)
   }
 
   const categories = getData().map((d) => d.name)
@@ -97,22 +102,33 @@ const OrderChart: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-hidden">
+    <div
+      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 rounded-none p-10' : ''
+        }`}
+    >
       <div className="flex justify-between items-center mb-4">
         <div>
           <h3 className="text-xl font-semibold">Orders Over Time</h3>
           <p className="text-sm text-gray-400">View order trends over time</p>
         </div>
-        <select
-          value={range}
-          onChange={(e) => setRange(e.target.value)}
-          className="text-sm bg-[#52525B] px-3 py-1 rounded text-gray-200 outline-none cursor-pointer"
-        >
-          <option>Last 7 days</option>
-          <option>Last 30 days</option>
-          <option>Last 3 months</option>
-          <option>Last year</option>
-        </select>
+        <div className="flex items-center gap-2">
+          <select
+            value={range}
+            onChange={(e) => setRange(e.target.value)}
+            className="text-sm bg-[#52525B] px-2 py-1 rounded text-gray-200 outline-none cursor-pointer"
+          >
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+            <option>Last 3 months</option>
+            <option>Last year</option>
+          </select>
+          <button
+            onClick={toggleFullscreen}
+            className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
+          >
+            {isFullscreen ? 'Collapse' : 'Expand'}
+          </button>
+        </div>
       </div>
 
       <HighchartsReact highcharts={Highcharts} options={options} />

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
@@ -18,6 +18,12 @@ const data = [
 ]
 
 const PeakHoursChart: React.FC = () => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev)
+  }
+
   const chartOptions: Highcharts.Options = {
     chart: {
       type: 'column',
@@ -60,12 +66,23 @@ const PeakHoursChart: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full">
-      <div className="mb-4">
-        <h3 className="text-xl font-semibold">Peak Hours</h3>
-        <p className="text-sm text-gray-400">
-          Orders by hour throughout the day – see when we&apos;re busiest
-        </p>
+    <div
+      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 rounded-none p-10' : ''
+        }`}
+    >
+      <div className="flex justify-between items-center mb-4">
+        <div>
+          <h3 className="text-xl font-semibold">Peak Hours</h3>
+          <p className="text-sm text-gray-400">
+            Orders by hour throughout the day – see when we&apos;re busiest
+          </p>
+        </div>
+        <button
+          onClick={toggleFullscreen}
+          className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
+        >
+          {isFullscreen ? 'Collapse' : 'Expand'}
+        </button>
       </div>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
