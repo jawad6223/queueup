@@ -173,6 +173,39 @@ export const OrderData: OrderItem[] = [
         orderValue: "$50",
         timezone: ["Jessica Rodriguez", "Asia/Dubai"]
       },
+      {
+        id: "ORD001",
+        customerName: "Sarah Johnson",
+        coachName: "View Details",
+        service: "Instant Session",
+        status: "Active",
+        duration: "2 hours",
+        timeElapsed: "45 minutes",
+        orderValue: "$75",
+        timezone: ["Alex Thompson", "America/New York"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
+      {
+        id: "ORD002",
+        customerName: "Mike Chen",
+        coachName: "View Details",
+        service: "Direct Session",
+        status: "Active",
+        duration: "1 hour",
+        timeElapsed: "30 minutes",
+        orderValue: "$50",
+        timezone: ["Jessica Rodriguez", "Asia/Dubai"]
+      },
     ],
     Cancelled: [
       {

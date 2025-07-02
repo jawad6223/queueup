@@ -134,43 +134,42 @@ const Dashboard: React.FC = () => {
                 {DashboardData.map((item, index) => (
                     <div
                         key={index}
-                        className="bg-[#3D3C3F] shadow-xs px-5 py-4 rounded-lg animated-border"
+                        className="relative w-full rounded-2xl [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border"
                     >
-                        <div className="flex items-center justify-between">
-                            <h1 className="text-white font-medium text-[1.25rem]">
-                                {item.label}
-                            </h1>
-                            <div
-                                className="relative"
-                                ref={el => { dropdownRefs.current[index] = el; }}
-                            >
-                                <button
-                                    onClick={() => toggleDropdown(index)}
-                                    className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
-                                >
-                                    {selectedStatus[index]}
-                                    <span className={`transition-transform duration-300 ${isOpen[index] ? 'rotate-180' : ''}`}>
-                                        <MdKeyboardArrowDown />
-                                    </span>
-                                </button>
-                                {isOpen[index] && (
-                                    <ul className="absolute right-0 mt-0.5 bg-[#28282D] text-white border border-[#52525B] rounded w-36 z-10">
-                                        {statuses.map((status) => (
-                                            <li
-                                                key={status}
-                                                onClick={() => selectOption(index, status)}
-                                                className={`px-4 py-2 hover:bg-[#444] cursor-pointer ${selectedStatus[index] === status ? 'bg-[#444]' : ''}`}
-                                            >
-                                                {status}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
+                        <div className="bg-[#3D3C3F] p-5 rounded-[14px]">
+                            <div className="flex items-center justify-between">
+                                <h1 className="text-white font-medium text-[1.25rem]">
+                                    {item.label}
+                                </h1>
+                                <div className="relative" ref={el => { dropdownRefs.current[index] = el; }}>
+                                    <button
+                                        onClick={() => toggleDropdown(index)}
+                                        className="bg-[#28282D] text-white px-5 py-2 text-sm outline-none flex items-center gap-2 cursor-pointer rounded-md"
+                                    >
+                                        {selectedStatus[index]}
+                                        <span className={`transition-transform duration-300 ${isOpen[index] ? 'rotate-180' : ''}`}>
+                                            <MdKeyboardArrowDown />
+                                        </span>
+                                    </button>
+                                    {isOpen[index] && (
+                                        <ul className="absolute right-0 mt-0.5 bg-[#28282D] text-white border border-[#52525B] rounded w-36 z-10">
+                                            {statuses.map((status) => (
+                                                <li
+                                                    key={status}
+                                                    onClick={() => selectOption(index, status)}
+                                                    className={`px-4 py-2 hover:bg-[#444] cursor-pointer ${selectedStatus[index] === status ? 'bg-[#444]' : ''}`}
+                                                >
+                                                    {status}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
                             </div>
+                            <p className="text-white font-semibold text-[2.7rem] mt-5">
+                                {item.numbers[selectedStatus[index] as keyof typeof item.numbers] ?? 0}
+                            </p>
                         </div>
-                        <p className="text-white font-semibold text-[2.7rem] mt-5">
-                            {item.numbers[selectedStatus[index] as keyof typeof item.numbers] ?? 0}
-                        </p>
                     </div>
                 ))}
             </div>
@@ -271,7 +270,7 @@ const Dashboard: React.FC = () => {
                 </div>
 
                 {filteredData.length > itemsPerPage && (
-                    <div className="flex items-center justify-end gap-1 mt-4">
+                    <div className="flex items-center justify-end gap-1">
                         <button
                             onClick={() => goToPage(1)}
                             className="text-white cursor-pointer"
