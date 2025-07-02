@@ -253,12 +253,12 @@ const Dashboard: React.FC = () => {
                                         {order.service} - {order.timeElapsed} elapsed
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <p className="font-medium font-inter">Coach:</p>
-                                        <p className="font-medium font-inter">{order.coach}</p>
+                                        <p className="font-medium font-inter text-white">Coach:</p>
+                                        <p className="font-medium font-inter text-white">{order.coach}</p>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <p className="font-medium font-inter">Timezone:</p>
-                                        <p className="font-medium font-inter">{order.timezone}</p>
+                                        <p className="font-medium font-inter text-white">Timezone:</p>
+                                        <p className="font-medium font-inter text-white">{order.timezone}</p>
                                     </div>
                                 </div>
                             )}
