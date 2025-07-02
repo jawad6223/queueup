@@ -35,7 +35,7 @@ export default function RootLayout({
         <div className="flex relative">
           <div className="fixed inset-0 -z-10">
             <div className="absolute inset-0 bg-[url('/images/background.png')] bg-cover bg-center opacity-60"></div>
-            <div className="absolute inset-0 bg-[#6A7589] opacity-80"></div>
+            <div className="absolute inset-0 bg-[#6A7589] opacity-80 sunset-overlay"></div>
           </div>
           <div className="hidden lg:block">
             <Sidebar menus={AdminMenus} />
