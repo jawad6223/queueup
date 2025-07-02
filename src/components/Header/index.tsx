@@ -18,7 +18,7 @@ const Header: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState('')
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const options = ['Order Over Time', 'Peak Time', 'Order Management'];
-    const fullText = 'Good Evening John..!'
+    const fullText = 'Goood Evening John..!'
     const [text, setText] = useState('');
     const [isTypingComplete, setIsTypingComplete] = useState(false)
 
