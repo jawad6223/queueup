@@ -33,7 +33,6 @@ const Dashboard: React.FC = () => {
         setIsOpen1(false);
     };
 
-
     const toggleDropdown = (index: number) => {
         setIsOpen((prev) => prev.map((open, i) => i === index ? !open : false));
     };
@@ -126,7 +125,7 @@ const Dashboard: React.FC = () => {
     const statusColor = statusColors[selectedStatus1 as keyof typeof statusColors];
 
     return (
-        <div className="bg-[#26262B] px-[32px] py-4 rounded-bl-lg rounded-br-lg">
+        <div className={`bg-[#26262B] px-[32px] py-4 rounded-bl-lg rounded-br-lg scrollbar-hide h-[calc(100vh-119px)] overflow-y-auto`}>
             <div className="grid md:grid-cols-2 gap-4">
                 <OrderChart />
                 <PeakHoursChart />
