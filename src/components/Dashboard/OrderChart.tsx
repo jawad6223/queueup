@@ -103,35 +103,36 @@ const OrderChart: React.FC = () => {
 
   return (
     <div
-      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
+      className={`text-white rounded-2xl w-full overflow-auto transition-all duration-300 [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
         }`}
     >
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <h3 className="text-xl font-semibold">Orders Over Time</h3>
-          <p className="text-sm text-gray-400">View order trends over time</p>
+      <div className="bg-[#3D3D3F] p-6 border border-[#52525B]">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h3 className="text-xl font-semibold">Orders Over Time</h3>
+            <p className="text-sm text-gray-400">View order trends over time</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <select
+              value={range}
+              onChange={(e) => setRange(e.target.value)}
+              className="text-sm bg-[#52525B] px-2 py-1 rounded text-gray-200 outline-none cursor-pointer"
+            >
+              <option>Last 7 days</option>
+              <option>Last 30 days</option>
+              <option>Last 3 months</option>
+              <option>Last year</option>
+            </select>
+            <button
+              onClick={toggleFullscreen}
+              className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
+            >
+              {isFullscreen ? 'Collapse' : 'Expand'}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <select
-            value={range}
-            onChange={(e) => setRange(e.target.value)}
-            className="text-sm bg-[#52525B] px-2 py-1 rounded text-gray-200 outline-none cursor-pointer"
-          >
-            <option>Last 7 days</option>
-            <option>Last 30 days</option>
-            <option>Last 3 months</option>
-            <option>Last year</option>
-          </select>
-          <button
-            onClick={toggleFullscreen}
-            className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
-          >
-            {isFullscreen ? 'Collapse' : 'Expand'}
-          </button>
-        </div>
+        <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
-
-      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
 }

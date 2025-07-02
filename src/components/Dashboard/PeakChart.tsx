@@ -67,24 +67,26 @@ const PeakHoursChart: React.FC = () => {
 
   return (
     <div
-      className={`bg-[#3D3D3F] border border-[#52525B] text-white p-6 rounded-xl w-full overflow-auto transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
+      className={`text-white rounded-2xl w-full overflow-auto transition-all duration-300 [background:linear-gradient(45deg,#1a1a1a,theme(colors.slate.800)_50%,#1a1a1a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.red.500)_86%,_theme(colors.red.300)_90%,_theme(colors.red.500)_94%,_theme(colors.slate.600/.48))_border-box] border border-transparent animate-border ${isFullscreen ? 'fixed inset-0 z-50 p-6 flex flex-col justify-center' : ''
         }`}
     >
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <h3 className="text-xl font-semibold">Peak Hours</h3>
-          <p className="text-sm text-gray-400">
-            Orders by hour throughout the day – see when we&apos;re busiest
-          </p>
+      <div className="bg-[#3D3D3F] p-6 border border-[#52525B]">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h3 className="text-xl font-semibold">Peak Hours</h3>
+            <p className="text-sm text-gray-400">
+              Orders by hour throughout the day – see when we&apos;re busiest
+            </p>
+          </div>
+          <button
+            onClick={toggleFullscreen}
+            className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
+          >
+            {isFullscreen ? 'Collapse' : 'Expand'}
+          </button>
         </div>
-        <button
-          onClick={toggleFullscreen}
-          className="text-sm bg-[#EF4444] px-3 py-1 rounded text-white cursor-pointer"
-        >
-          {isFullscreen ? 'Collapse' : 'Expand'}
-        </button>
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </div>
-      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
   )
 }
