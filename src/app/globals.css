@@ -121,10 +121,10 @@ body {
 
 @keyframes sunsetShift {
   0%   { background-color: #6A7589; }
-  25%  { background-color: #f97316; }
-  50%  { background-color: #ef4444; }
-  75%  { background-color: #c026d3; }
-  100% { background-color: #7e22ce; }
+  25%  { background-color: #f59b5b; }
+  50%  { background-color: #f16e6e; }
+  75%  { background-color: #d174dd; }
+  100% { background-color: #8057a5; }
 }
 
 .sunset-overlay {
